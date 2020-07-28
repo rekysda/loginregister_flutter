@@ -41,7 +41,7 @@ class _LoginState extends State<Login> {
  }
 
  login() async {
-   final response = await http.post("http://192.168.10.193/flutter/login.php",
+   final response = await http.post("http://192.168.8.21/flutter/login.php",
        body: {"email": email, "password": password});
    final data = jsonDecode(response.body);
    int value = data['value'];
@@ -140,15 +140,6 @@ class _LoginState extends State<Login> {
                  },
                  child: Text("Login"),
                ),
-               InkWell(
-                 onTap: () {
-                   Navigator.of(context).push(
-                       MaterialPageRoute(builder: (context) => Register()));
-                 },
-                 child: Text(
-                   "Create a new account, in here",
-                   textAlign: TextAlign.center,
-                 ),
                )
              ],
            ),
@@ -201,58 +192,7 @@ class _RegisterState extends State<Register> {
    }
  }
 
- @override
- Widget build(BuildContext context) {
-   return Scaffold(
-     appBar: AppBar(
-       title: Text("Register"),
-     ),
-     body: Form(
-       key: _key,
-       child: ListView(
-         padding: EdgeInsets.all(16.0),
-         children: <Widget>[
-           TextFormField(
-             validator: (e) {
-               if (e.isEmpty) {
-                 return "Please insert fullname";
-               }
-             },
-             onSaved: (e) => nama = e,
-             decoration: InputDecoration(labelText: "Nama Lengkap"),
-           ),
-           TextFormField(
-             validator: (e) {
-               if (e.isEmpty) {
-                 return "Please insert email";
-               }
-             },
-             onSaved: (e) => email = e,
-             decoration: InputDecoration(labelText: "email"),
-           ),
-           TextFormField(
-             obscureText: _secureText,
-             onSaved: (e) => password = e,
-             decoration: InputDecoration(
-               labelText: "Password",
-               suffixIcon: IconButton(
-                 onPressed: showHide,
-                 icon: Icon(
-                     _secureText ? Icons.visibility_off : Icons.visibility),
-               ),
-             ),
-           ),
-           MaterialButton(
-             onPressed: () {
-               check();
-             },
-             child: Text("Register"),
-           )
-         ],
-       ),
-     ),
-   );
- }
+
 }
 
 class MainMenu extends StatefulWidget {
@@ -308,8 +248,8 @@ class _MainMenuState extends State<MainMenu> {
          child: Text(
            "Dashboard"
          ),
-       )
-     ),
+       ),
+            ),
    );
  }
 }
